@@ -7,17 +7,10 @@
 // GLFW
 #include <GLFW/glfw3.h>
 
-// Other Libs
-#include "stb_image.h"
-
-// GLM Mathematics
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
-
 //Load Models
 #include "SOIL2/SOIL2.h"
-
+// Other Libs
+#include "stb_image.h"
 
 // Other includes
 #include "Shader.h"
@@ -25,6 +18,12 @@
 #include "Model.h"
 #include "Texture.h"
 #include "modelAnim.h"
+
+// GLM Mathematics
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
 
 // Function prototypes
 void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mode);
