@@ -1,24 +1,24 @@
 ﻿  314221658_Reporte9_GPO12.cpp
-C:\Users\hecto\Desktop\Repositorio\314221658_Proyecto_GPO12\ProyectoFinal\ProyectoFinal\314221658_Reporte9_GPO12.cpp(196,24): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\hecto\Desktop\Repositorio\314221658_Proyecto_GPO12\ProyectoFinal\ProyectoFinal\314221658_Reporte9_GPO12.cpp(231,21): warning C4244: '=': conversión de 'double' a 'T'; posible pérdida de datos
-          with
-          [
-              T=float
-          ]
-C:\Users\hecto\Desktop\Repositorio\314221658_Proyecto_GPO12\ProyectoFinal\ProyectoFinal\314221658_Reporte9_GPO12.cpp(232,21): warning C4244: '=': conversión de 'double' a 'T'; posible pérdida de datos
-          with
-          [
-              T=float
-          ]
+C:\Users\hecto\Desktop\Repositorio\314221658_Proyecto_GPO12\ProyectoFinal\ProyectoFinal\314221658_Reporte9_GPO12.cpp(198,24): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
 C:\Users\hecto\Desktop\Repositorio\314221658_Proyecto_GPO12\ProyectoFinal\ProyectoFinal\314221658_Reporte9_GPO12.cpp(233,21): warning C4244: '=': conversión de 'double' a 'T'; posible pérdida de datos
           with
           [
               T=float
           ]
-C:\Users\hecto\Desktop\Repositorio\314221658_Proyecto_GPO12\ProyectoFinal\ProyectoFinal\314221658_Reporte9_GPO12.cpp(466,11): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\hecto\Desktop\Repositorio\314221658_Proyecto_GPO12\ProyectoFinal\ProyectoFinal\314221658_Reporte9_GPO12.cpp(467,11): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\hecto\Desktop\Repositorio\314221658_Proyecto_GPO12\ProyectoFinal\ProyectoFinal\314221658_Reporte9_GPO12.cpp(471,18): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\hecto\Desktop\Repositorio\314221658_Proyecto_GPO12\ProyectoFinal\ProyectoFinal\314221658_Reporte9_GPO12.cpp(472,18): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\hecto\Desktop\Repositorio\314221658_Proyecto_GPO12\ProyectoFinal\ProyectoFinal\314221658_Reporte9_GPO12.cpp(474,10): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\hecto\Desktop\Repositorio\314221658_Proyecto_GPO12\ProyectoFinal\ProyectoFinal\314221658_Reporte9_GPO12.cpp(475,10): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\hecto\Desktop\Repositorio\314221658_Proyecto_GPO12\ProyectoFinal\ProyectoFinal\314221658_Reporte9_GPO12.cpp(234,21): warning C4244: '=': conversión de 'double' a 'T'; posible pérdida de datos
+          with
+          [
+              T=float
+          ]
+C:\Users\hecto\Desktop\Repositorio\314221658_Proyecto_GPO12\ProyectoFinal\ProyectoFinal\314221658_Reporte9_GPO12.cpp(235,21): warning C4244: '=': conversión de 'double' a 'T'; posible pérdida de datos
+          with
+          [
+              T=float
+          ]
+C:\Users\hecto\Desktop\Repositorio\314221658_Proyecto_GPO12\ProyectoFinal\ProyectoFinal\314221658_Reporte9_GPO12.cpp(482,11): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\hecto\Desktop\Repositorio\314221658_Proyecto_GPO12\ProyectoFinal\ProyectoFinal\314221658_Reporte9_GPO12.cpp(483,11): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\hecto\Desktop\Repositorio\314221658_Proyecto_GPO12\ProyectoFinal\ProyectoFinal\314221658_Reporte9_GPO12.cpp(487,18): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\hecto\Desktop\Repositorio\314221658_Proyecto_GPO12\ProyectoFinal\ProyectoFinal\314221658_Reporte9_GPO12.cpp(488,18): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\hecto\Desktop\Repositorio\314221658_Proyecto_GPO12\ProyectoFinal\ProyectoFinal\314221658_Reporte9_GPO12.cpp(490,10): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\hecto\Desktop\Repositorio\314221658_Proyecto_GPO12\ProyectoFinal\ProyectoFinal\314221658_Reporte9_GPO12.cpp(491,10): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
   ProyectoFinal.vcxproj -> C:\Users\hecto\Desktop\Repositorio\314221658_Proyecto_GPO12\ProyectoFinal\Debug\ProyectoFinal.exe
