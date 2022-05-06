@@ -167,6 +167,8 @@ int main()
 	Model raptor((char*)"Models/Dinos/raptor.obj");
 	Model celda((char*)"Models/Celda/celda.obj");
 	Model pisocelda((char*)"Models/Celda/pisocelda.obj");
+	Model megalodon((char*)"Models/Dinos/Megalodon.obj");
+	Model agua((char*)"Models/Sea/Sea.obj");
 
 
 	// First, set the container's VAO (and VBO)
@@ -294,6 +296,10 @@ int main()
 
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		raptor.Draw(lightingShader);
+
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		megalodon.Draw(lightingShader);
+
 		//celda Rex
 		model = glm::mat4(1);
 		model = glm::translate(model, glm::vec3(0.0f, 0.0f, -30.0f));
@@ -307,6 +313,16 @@ int main()
 		celda.Draw(lightingShader);
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		pisocelda.Draw(lightingShader);
+		//Celda Megalodon
+		model = glm::translate(model, glm::vec3(-60.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		celda.Draw(lightingShader);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		pisocelda.Draw(lightingShader);
+		model = glm::translate(model, glm::vec3(0.0f, 3.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		agua.Draw(lightingShader);
+
 
 		// Also draw the lamp object, again binding the appropriate shader
 		lampShader.Use();
