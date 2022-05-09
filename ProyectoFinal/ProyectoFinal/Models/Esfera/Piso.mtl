@@ -1,41 +1,39 @@
-newmtl Piso2:lambert2SG
+newmtl Bench_LowRes:LoD_0SG
+illum 4
+Kd 0.50 0.50 0.50
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+newmtl Bench_LowRes:Negro
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd negro.jpg
+Ni 1.00
+Ks 0.50 0.50 0.50
+Ns 18.00
+newmtl Bench_LowRes:lambert1SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd tierra.jpg
+Ni 1.00
+newmtl Piso:lambert2SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd grass.jpg
 Ni 1.00
-newmtl Trex:lambert2SG
+newmtl Piso:lambert3SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
-map_Kd blanco.jpg
+map_Kd maderaBanca.jpg
 Ni 1.00
-newmtl Trex:lambert3SG
-illum 4
-Kd 0.00 0.00 0.00
-Ka 0.00 0.00 0.00
-Tf 1.00 1.00 1.00
-map_Kd rosa.jpg
-Ni 1.00
-newmtl Trex:lambert4SG
-illum 4
-Kd 0.00 0.00 0.00
-Ka 0.00 0.00 0.00
-Tf 1.00 1.00 1.00
-map_Kd rojo.jpg
-Ni 1.00
-newmtl Trex:phong1SG
-illum 4
-Kd 0.00 0.00 0.00
-Ka 0.00 0.00 0.00
-Tf 1.00 1.00 1.00
-map_Kd Trex_Diffuse.jpg
-Ni 1.00
-Ks 0.00 0.00 0.00
-map_Ks Trex_Specular.png
-Ns 18.00
 newmtl castillo:lambert2SG
 illum 4
 Kd 0.00 0.00 0.00
@@ -59,11 +57,34 @@ map_Kd puertas.jpg
 Ni 1.00
 Ks 0.50 0.50 0.50
 Ns 18.00
-newmtl raptor:None
+newmtl celda:phong2SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd negro.jpg
+Ni 1.00
+Ks 0.50 0.50 0.50
+Ns 18.00
+newmtl initialShadingGroup
 illum 4
 Kd 0.50 0.50 0.50
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 Ni 1.00
+newmtl phong3SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd texturaFuente.jpg
+Ni 1.00
 Ks 0.50 0.50 0.50
 Ns 18.00
+newmtl pisoCelda:lambert4SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd patron_castillo.jpg
+Ni 1.00

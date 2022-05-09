@@ -161,6 +161,9 @@ int main()
 	Shader lampShader("Shaders/lamp.vs", "Shaders/lamp.frag");
 
 	Model Piso((char*)"Models/Esfera/Piso.obj");
+	Model Tierra((char*)"Models/Esfera/tierra.obj");
+	Model Bancas((char*)"Models/Bancas/Bancas.obj");
+	Model Fuente((char*)"Models/Fuente/Fuente.obj");
 	Model Esfera((char*)"Models/Esfera/Esfera.obj");
 	Model rex((char*)"Models/Dinos/Trex.obj");
 	Model castillo((char*)"Models/Fachada/castillo.obj");
@@ -282,46 +285,60 @@ int main()
 
 
 		//Carga de modelo 
+		//Pisos,Fachada, Bancas y Fuente
 		view = camera.GetViewMatrix();
 		model = glm::mat4(1);
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		Piso.Draw(lightingShader);
+		model = glm::translate(model, glm::vec3(0.0f, 0.2f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		Tierra.Draw(lightingShader);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		Bancas.Draw(lightingShader);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		Fuente.Draw(lightingShader);
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		glUniform4f(glGetUniformLocation(lightingShader.Program, "colorAlpha"), 1.0f, 1.0f, 1.0f, 1.0f);
 		castillo.Draw(lightingShader);
-		model = glm::translate(model, glm::vec3(0.0f, 2.0f, 0.0f));
+		//T-Rex
+		model = glm::translate(model, glm::vec3(0.0f, 2.0f, -30.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		glUniform1i(glGetUniformLocation(lightingShader.Program, "activaTrasparencia"), 0);
 		rex.Draw(lightingShader);
-
+		//Raptor
+		model = glm::translate(model, glm::vec3(30.0f, 0.0f, 0.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		raptor.Draw(lightingShader);
-
+		//Megalodon
+		model = glm::translate(model, glm::vec3(-65.0f, -1.2f, -5.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		megalodon.Draw(lightingShader);
+		model = glm::translate(model, glm::vec3(1.0f, -0.5f, -0.5f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		agua.Draw(lightingShader);
 
 		//celda Rex
 		model = glm::mat4(1);
-		model = glm::translate(model, glm::vec3(0.0f, 0.0f, -30.0f));
+		model = glm::translate(model, glm::vec3(0.0f, 0.0f, -60.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		celda.Draw(lightingShader);
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		pisocelda.Draw(lightingShader);
 		//Celda raptor
-		model = glm::translate(model, glm::vec3(30.0f, 0.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(60.0f, 0.0f, 0.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		celda.Draw(lightingShader);
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		pisocelda.Draw(lightingShader);
 		//Celda Megalodon
-		model = glm::translate(model, glm::vec3(-60.0f, 0.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(-120.0f, 0.0f, 0.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		celda.Draw(lightingShader);
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		pisocelda.Draw(lightingShader);
-		model = glm::translate(model, glm::vec3(0.0f, 3.0f, 0.0f));
+		/*model = glm::translate(model, glm::vec3(0.0f, 2.1f, 0.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		agua.Draw(lightingShader);
+		agua.Draw(lightingShader);*/
 
 
 		// Also draw the lamp object, again binding the appropriate shader
