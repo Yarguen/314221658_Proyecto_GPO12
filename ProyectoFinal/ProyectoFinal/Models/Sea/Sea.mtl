@@ -1,3 +1,62 @@
+newmtl Bancas:Negro
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd negro.jpg
+Ni 1.00
+Ks 0.50 0.50 0.50
+Ns 18.00
+newmtl Bancas:lambert3SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd maderaBanca.jpg
+Ni 1.00
+newmtl Fuente:phong3SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd texturaFuente.jpg
+Ni 1.00
+Ks 0.50 0.50 0.50
+Ns 18.00
+newmtl Jeep:phong2SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd jeep_Texture.jpg
+Ni 1.00
+Ks 0.50 0.50 0.50
+Ns 18.00
+newmtl Lamparas:phong1SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd negro.jpg
+Ni 1.00
+Ks 0.50 0.50 0.50
+Ns 18.00
+newmtl Lamparas:phong2SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd amarillo.png
+Ni 1.00
+Ks 0.50 0.50 0.50
+Ns 18.00
+newmtl Megalodon:lambert2SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd megalodon.jpg
+Ni 1.00
 newmtl Piso:lambert2SG
 illum 4
 Kd 0.00 0.00 0.00
@@ -5,6 +64,64 @@ Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd grass.jpg
 Ni 1.00
+newmtl Sea:phong1SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd agua.jpg
+Ni 1.00
+Ks 0.50 0.50 0.50
+Ns 18.00
+newmtl Trex:lambert2SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd blanco.jpg
+Ni 1.00
+newmtl Trex:lambert3SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd rosa.jpg
+Ni 1.00
+newmtl Trex:lambert4SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd rojo.jpg
+Ni 1.00
+newmtl Trex:phong1SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd Trex_Diffuse.jpg
+Ni 1.00
+Ks 0.00 0.00 0.00
+map_Ks Trex_Specular.png
+Ns 18.00
+newmtl _Pterodactylus_v1_L1:_Pterodactylus
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd pterodactylo_texture.jpg
+map_Ka pterodactylo_texture.jpg
+Ni 1.50
+newmtl _dinosaur_v1_L3:dinosaur1
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd dinosaur_diffuse.jpg
+map_Ka dinosaur_diffuse.jpg
+Ni 1.50
+Ks 0.35 0.35 0.35
+Ns 32.00
 newmtl castillo:lambert2SG
 illum 4
 Kd 0.00 0.00 0.00
@@ -19,6 +136,30 @@ Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd patron_castillo.jpg
 Ni 1.00
+newmtl castillo:lambert6SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd dinosaur_diffuse1.jpg
+map_Ka dinosaur_diffuse1.jpg
+Ni 1.00
+Ks 0.50 0.50 0.50
+Ns 18.00
+newmtl castillo:lambert9SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd maple_leaf.png
+Ni 1.00
+newmtl castillo:lambert10SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd maple_bark.png
+Ni 1.00
 newmtl castillo:phong1SG
 illum 4
 Kd 0.00 0.00 0.00
@@ -28,6 +169,13 @@ map_Kd puertas.jpg
 Ni 1.00
 Ks 0.50 0.50 0.50
 Ns 18.00
+newmtl castillo:phong3SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd piel_dino.jpg
+Ni 1.00
 newmtl celda:phong2SG
 illum 4
 Kd 0.00 0.00 0.00
@@ -37,26 +185,32 @@ map_Kd negro.jpg
 Ni 1.00
 Ks 0.50 0.50 0.50
 Ns 18.00
-newmtl lambert2SG
-illum 4
-Kd 0.00 0.00 0.00
-Ka 0.00 0.00 0.00
-Tf 1.00 1.00 1.00
-map_Kd megalodon.jpg
-Ni 1.00
-newmtl phong1SG
-illum 4
-Kd 0.00 0.00 0.00
-Ka 0.00 0.00 0.00
-Tf 1.00 1.00 1.00
-map_Kd agua.jpg
-Ni 1.00
-Ks 0.50 0.50 0.50
-Ns 18.00
 newmtl pisoCelda:lambert4SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd patron_castillo.jpg
+Ni 1.00
+newmtl raptor:None
+illum 4
+Kd 0.50 0.50 0.50
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.50 0.50 0.50
+Ns 18.00
+newmtl tierra:lambert1SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd tierra.jpg
+Ni 1.00
+newmtl tierra:lambert2SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd grass.jpg
 Ni 1.00
