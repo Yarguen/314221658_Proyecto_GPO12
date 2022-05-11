@@ -15,12 +15,12 @@ C:\Users\hecto\Desktop\Repositorio\314221658_Proyecto_GPO12\ProyectoFinal\Proyec
           [
               T=float
           ]
-C:\Users\hecto\Desktop\Repositorio\314221658_Proyecto_GPO12\ProyectoFinal\ProyectoFinal\314221658_Reporte9_GPO12.cpp(542,11): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\hecto\Desktop\Repositorio\314221658_Proyecto_GPO12\ProyectoFinal\ProyectoFinal\314221658_Reporte9_GPO12.cpp(543,11): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\hecto\Desktop\Repositorio\314221658_Proyecto_GPO12\ProyectoFinal\ProyectoFinal\314221658_Reporte9_GPO12.cpp(547,18): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\hecto\Desktop\Repositorio\314221658_Proyecto_GPO12\ProyectoFinal\ProyectoFinal\314221658_Reporte9_GPO12.cpp(548,18): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\hecto\Desktop\Repositorio\314221658_Proyecto_GPO12\ProyectoFinal\ProyectoFinal\314221658_Reporte9_GPO12.cpp(550,10): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
-C:\Users\hecto\Desktop\Repositorio\314221658_Proyecto_GPO12\ProyectoFinal\ProyectoFinal\314221658_Reporte9_GPO12.cpp(551,10): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\hecto\Desktop\Repositorio\314221658_Proyecto_GPO12\ProyectoFinal\ProyectoFinal\314221658_Reporte9_GPO12.cpp(523,11): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\hecto\Desktop\Repositorio\314221658_Proyecto_GPO12\ProyectoFinal\ProyectoFinal\314221658_Reporte9_GPO12.cpp(524,11): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\hecto\Desktop\Repositorio\314221658_Proyecto_GPO12\ProyectoFinal\ProyectoFinal\314221658_Reporte9_GPO12.cpp(528,18): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\hecto\Desktop\Repositorio\314221658_Proyecto_GPO12\ProyectoFinal\ProyectoFinal\314221658_Reporte9_GPO12.cpp(529,18): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\hecto\Desktop\Repositorio\314221658_Proyecto_GPO12\ProyectoFinal\ProyectoFinal\314221658_Reporte9_GPO12.cpp(531,10): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\hecto\Desktop\Repositorio\314221658_Proyecto_GPO12\ProyectoFinal\ProyectoFinal\314221658_Reporte9_GPO12.cpp(532,10): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
 LINK : warning LNK4098: la biblioteca predeterminada'MSVCRT' entra en conflicto con otras bibliotecas; use la biblioteca /NODEFAULTLIB:biblioteca
 soil2-debug.lib(etc1_utils.obj) : warning LNK4099: no se encontró PDB 'soil2-debug.pdb' con 'soil2-debug.lib(etc1_utils.obj)' o en 'C:\Users\hecto\Desktop\Repositorio\314221658_Proyecto_GPO12\ProyectoFinal\Debug\soil2-debug.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
 soil2-debug.lib(image_DXT.obj) : warning LNK4099: no se encontró PDB 'soil2-debug.pdb' con 'soil2-debug.lib(image_DXT.obj)' o en 'C:\Users\hecto\Desktop\Repositorio\314221658_Proyecto_GPO12\ProyectoFinal\Debug\soil2-debug.pdb'; se vinculará el objeto sin tener en cuenta información de depuración

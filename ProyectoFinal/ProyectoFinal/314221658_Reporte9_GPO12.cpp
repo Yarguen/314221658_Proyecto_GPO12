@@ -178,7 +178,7 @@ int main()
 	Model agua((char*)"Models/Sea/Sea.obj");
 	//Model jeep((char*)"Models/Jeep/Jeep2.obj");
 	Model arboles((char*)"Models/Arbol/Arboles.obj");
-	Model tiendas((char*)"Models/Tiendas/tiendas.obj");
+	Model tiendas((char*)"Models/Tiendas/tiendas2.obj");
 	Model tricoBotarga((char*)"Models/Dinos/tricoBotarga.obj");
 	Model rexBotarga((char*)"Models/Dinos/rexBotarga.obj");
 
