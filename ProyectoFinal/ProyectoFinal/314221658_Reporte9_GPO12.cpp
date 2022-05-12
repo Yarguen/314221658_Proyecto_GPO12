@@ -28,7 +28,7 @@
 void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mode);
 void MouseCallback(GLFWwindow* window, double xPos, double yPos);
 void DoMovement();
-
+void animacion();
 // Window dimensions
 const GLuint WIDTH = 800, HEIGHT = 600;
 int SCREEN_WIDTH, SCREEN_HEIGHT;
@@ -42,6 +42,35 @@ bool firstMouse = true;
 // Light attributes
 glm::vec3 lightPos(0.0f, 0.0f, 0.0f);
 bool active;
+bool anim;
+//variables para la animacion del Pterodactylo
+float rotPtero = 0.0f;
+float rotAlasptero = 0.0f;
+float movPteroX = 0.0f;
+float movPteroZ = 0.0f;
+bool r1Ptero = true;
+bool r2Ptero = false;
+bool r3Ptero = false;
+bool r4Ptero = false;
+bool r5Ptero = false;
+float desfase1 = 0.0f;
+float desfase2 = 0.0f;
+bool aleteoAbajo = true;
+bool aleteoArriba = false;
+
+//variables para la animacion del Megalodon
+float movMegaX = 0.0f;
+float movMegaZ = 0.0f;
+bool r1Mega = true;
+bool r2Mega = false;
+bool r3Mega = false;
+bool r4Mega = false;
+bool r5Mega = false;
+float rotMega = 0.0f;
+float rotColaMega = 0.0f;
+float tiempo; //variable para animar el agua
+bool aleteoIzq = true;
+bool aleteoDer = false;
 
 // Positions of the point lights
 glm::vec3 pointLightPositions[] = {
@@ -105,6 +134,8 @@ glm::vec3 Light2 = glm::vec3(0);
 glm::vec3 Light3 = glm::vec3(0);
 glm::vec3 Light4 = glm::vec3(0);
 
+glm::vec3 PteroPosIni = glm::vec3(75.0f,13.0f,-9.0f);
+glm::vec3 MegaPosIni = glm::vec3(-73.0f, 3.2f, -73.5f);
 
 // Deltatime
 GLfloat deltaTime = 0.0f;	// Time between current frame and last frame
@@ -159,28 +190,38 @@ int main()
 
 	Shader lightingShader("Shaders/lighting.vs", "Shaders/lighting.frag");
 	Shader lampShader("Shaders/lamp.vs", "Shaders/lamp.frag");
+	Shader anim("Shaders/anim3.vs", "Shaders/anim3.frag");
 
 	Model Piso((char*)"Models/Esfera/Piso.obj");
 	Model Lamparas((char*)"Models/Lampara/Lamparas.obj");
 	Model Tierra((char*)"Models/Esfera/tierra.obj");
-	Model Bancas((char*)"Models/Bancas/Bancas.obj");
-	Model Fuente((char*)"Models/Fuente/Fuente.obj");
-	Model Esfera((char*)"Models/Esfera/Esfera.obj");
-	Model rex((char*)"Models/Dinos/Trex.obj");
-	Model pterodactylo((char*)"Models/Dinos/pterodactilo.obj");
-	Model barosaurus((char*)"Models/Dinos/Barosaurus.obj");
-	Model castillo((char*)"Models/Fachada/castillo.obj");
-	Model raptor((char*)"Models/Dinos/raptor.obj");
-	Model celda((char*)"Models/Celda/celda.obj");
-	Model pisocelda((char*)"Models/Celda/pisocelda.obj");
+	//Model Bancas((char*)"Models/Bancas/Bancas.obj");
+	//Model Fuente((char*)"Models/Fuente/Fuente.obj");
+	//Model Esfera((char*)"Models/Esfera/Esfera.obj");
+	//Model rex((char*)"Models/Dinos/Trex.obj");
+	//Model pterodactylo((char*)"Models/Dinos/pterodactilo.obj");
+	//Model barosaurus((char*)"Models/Dinos/Barosaurus.obj");
+	//Model castillo((char*)"Models/Fachada/castillo.obj");
+	//Model raptor((char*)"Models/Dinos/raptor.obj");
+	//Model celda((char*)"Models/Celda/celda.obj");
+	//Model pisocelda((char*)"Models/Celda/pisocelda.obj");
 	Model celdas((char*)"Models/Celda/setCeldas.obj");
-	Model megalodon((char*)"Models/Dinos/Megalodon.obj");
+	//Model megalodon((char*)"Models/Dinos/Megalodon.obj");
 	Model agua((char*)"Models/Sea/Sea.obj");
-	//Model jeep((char*)"Models/Jeep/Jeep2.obj");
-	Model arboles((char*)"Models/Arbol/Arboles.obj");
-	Model tiendas((char*)"Models/Tiendas/tiendas2.obj");
-	Model tricoBotarga((char*)"Models/Dinos/tricoBotarga.obj");
-	Model rexBotarga((char*)"Models/Dinos/rexBotarga.obj");
+	////Model jeep((char*)"Models/Jeep/Jeep2.obj");
+	//Model arboles((char*)"Models/Arbol/Arboles.obj");
+	//Model tiendas((char*)"Models/Tiendas/tiendas2.obj");
+	//Model tricoBotarga((char*)"Models/Dinos/tricoBotarga.obj");
+	//Model rexBotarga((char*)"Models/Dinos/rexBotarga.obj");
+
+	//Modelos Perodactylo
+	Model pterodactylo_AlaIzq((char*)"Models/Dinos/Pterodactylo/pterodactylo_AlaIzq.obj");
+	Model pterodactylo_AlaDer((char*)"Models/Dinos/Pterodactylo/pterodactylo_AlaDer.obj");
+	Model pterodactylo_Cuerpo((char*)"Models/Dinos/Pterodactylo/pterodactylo_Cuerpo.obj");
+
+	//Modelos Megalodon
+	Model megalodonCola((char*)"Models/Dinos/Megalodon/megalodonCola.obj");
+	Model megalodonCuerpo((char*)"Models/Dinos/Megalodon/megalodonCuerpo.obj");
 
 	// First, set the container's VAO (and VBO)
 	GLuint VBO, VAO;
@@ -201,7 +242,7 @@ int main()
 	glUniform1i(glGetUniformLocation(lightingShader.Program, "material.diffuse"), 0);
 	glUniform1i(glGetUniformLocation(lightingShader.Program, "material.specular"), 1);
 
-	glm::mat4 projection = glm::perspective(camera.GetZoom(), (GLfloat)SCREEN_WIDTH / (GLfloat)SCREEN_HEIGHT, 0.1f, 100.0f);
+	glm::mat4 projection = glm::perspective(camera.GetZoom(), (GLfloat)SCREEN_WIDTH / (GLfloat)SCREEN_HEIGHT, 0.1f, 200.0f);
 
 	// Game loop
 	while (!glfwWindowShouldClose(window))
@@ -215,6 +256,7 @@ int main()
 		// Check if any events have been activiated (key pressed, mouse moved etc.) and call corresponding response functions
 		glfwPollEvents();
 		DoMovement();
+		animacion();
 
 		// Clear the colorbuffer
 		glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
@@ -301,52 +343,92 @@ int main()
 		model = glm::translate(model, glm::vec3(0.0f, 0.2f, 0.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		Tierra.Draw(lightingShader);
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		Bancas.Draw(lightingShader);
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		glUniform4f(glGetUniformLocation(lightingShader.Program, "colorAlpha"), 1.0f, 1.0f, 1.0f, 1.0f);
-		Lamparas.Draw(lightingShader);
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		Fuente.Draw(lightingShader);
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		glUniform4f(glGetUniformLocation(lightingShader.Program, "colorAlpha"), 1.0f, 1.0f, 1.0f, 1.0f);
-		castillo.Draw(lightingShader);
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		arboles.Draw(lightingShader);
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		tiendas.Draw(lightingShader);
-		/*glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		jeep.Draw(lightingShader);*/
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		rexBotarga.Draw(lightingShader);
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		tricoBotarga.Draw(lightingShader);
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		//Bancas.Draw(lightingShader);
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		//glUniform4f(glGetUniformLocation(lightingShader.Program, "colorAlpha"), 1.0f, 1.0f, 1.0f, 1.0f);
+		//Lamparas.Draw(lightingShader);
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		//Fuente.Draw(lightingShader);
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		//glUniform4f(glGetUniformLocation(lightingShader.Program, "colorAlpha"), 1.0f, 1.0f, 1.0f, 1.0f);
+		//castillo.Draw(lightingShader);
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		//arboles.Draw(lightingShader);
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		//tiendas.Draw(lightingShader);
+		///*glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		//jeep.Draw(lightingShader);*/
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		//rexBotarga.Draw(lightingShader);
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		//tricoBotarga.Draw(lightingShader);
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		celdas.Draw(lightingShader);
 
-		//T-Rex
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		glUniform1i(glGetUniformLocation(lightingShader.Program, "activaTrasparencia"), 0);
-		rex.Draw(lightingShader);
-		//Raptor
-		
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		raptor.Draw(lightingShader);
+		////T-Rex
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		//glUniform1i(glGetUniformLocation(lightingShader.Program, "activaTrasparencia"), 0);
+		//rex.Draw(lightingShader);
+		////Raptor
+		//
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		//raptor.Draw(lightingShader);
+	
 		//Megalodon
-		
+		model = glm::mat4(1);
+		model = glm::translate(model,MegaPosIni+glm::vec3(movMegaX,0,movMegaZ));
+		model = glm::rotate(model, glm::radians(rotMega), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(rotColaMega), glm::vec3(0.0f, 1.0f, 0.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		megalodon.Draw(lightingShader);
-		//model = glm::translate(model, glm::vec3(0.0f, -0.5f, -0.0f));
+		megalodonCola.Draw(lightingShader);
+		model = glm::mat4(1);
+		model = glm::translate(model, MegaPosIni + glm::vec3(movMegaX, 0, movMegaZ));
+		model = glm::rotate(model, glm::radians(rotMega), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(-rotColaMega/2), glm::vec3(0.0f, 1.0f, 0.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		agua.Draw(lightingShader);
+		megalodonCuerpo.Draw(lightingShader);
 
-		//Barosuarus
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		barosaurus.Draw(lightingShader);
+		////Barosuarus
+		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		//barosaurus.Draw(lightingShader);
 
 		//Pterodactylo
+		/*model = glm::mat4(1);
+		model = glm::translate(model,PteroPosIni+glm::vec3(movPteroX,0,movPteroZ));
+		model = glm::rotate(model, glm::radians(rotPtero), glm::vec3(0.0f, 1.0f, 0.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		pterodactylo.Draw(lightingShader);
+		pterodactylo_Cuerpo.Draw(lightingShader);
+		model = glm::mat4(1);;
+		model = glm::translate(model,PteroPosIni + glm::vec3(movPteroX, 0, movPteroZ));
+		model = glm::rotate(model, glm::radians(rotPtero), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(-rotAlasptero), glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		pterodactylo_AlaDer.Draw(lightingShader);
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(0.0f, 0.0f, 1.3f));
+		model = glm::translate(model,PteroPosIni+glm::vec3(movPteroX,0.0f,movPteroZ));
+		model = glm::rotate(model, glm::radians(rotPtero), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(desfase2, 0.0f,desfase1));
+		model = glm::rotate(model, glm::radians(rotAlasptero), glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		pterodactylo_AlaIzq.Draw(lightingShader);*/
+
+		anim.Use();
+		tiempo = glfwGetTime();
+		modelLoc = glGetUniformLocation(anim.Program, "model");
+		viewLoc = glGetUniformLocation(anim.Program, "view");
+		projLoc = glGetUniformLocation(anim.Program, "projection");
+		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+		glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+
+		model = glm::mat4(1);
+		model = glm::translate(model, glm::vec3(0.0f,0.1f,0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glUniform1f(glGetUniformLocation(anim.Program, "time"), tiempo);
+		agua.Draw(anim);
+		glBindVertexArray(0);
 
 
 		// Also draw the lamp object, again binding the appropriate shader
@@ -424,6 +506,8 @@ void DoMovement()
 	//manipulacion de la posicion de Spotlight
 	if (keys[GLFW_KEY_K])
 	{
+		if (rotAlasptero < 45.0f)
+			rotAlasptero += 0.1f;
 		spotlightPosition.x += 0.01f;
 	}
 	if (keys[GLFW_KEY_H])
@@ -433,15 +517,19 @@ void DoMovement()
 
 	if (keys[GLFW_KEY_O])
 	{
+		anim = true;
 		spotlightPosition.y += 0.01f;
 	}
 
 	if (keys[GLFW_KEY_L])
 	{
+		if (rotAlasptero > 0)
+			rotAlasptero -= 0.1;
 		spotlightPosition.y -= 0.01f;
 	}
 	if (keys[GLFW_KEY_U])
 	{
+		anim = false;
 		spotlightPosition.z -= 0.01f;
 	}
 	if (keys[GLFW_KEY_J])
@@ -532,4 +620,160 @@ void MouseCallback(GLFWwindow* window, double xPos, double yPos)
 	lastY = yPos;
 
 	camera.ProcessMouseMovement(xOffset, yOffset);
+}
+
+void animacion()
+{	//Animacion Pterodactylo
+	if (anim)
+	{
+		if (r1Ptero)
+		{
+			movPteroX -= 0.025;
+			if (movPteroX < -23)
+			{
+				r1Ptero = false;
+				r2Ptero = true;
+			}
+		}
+		if (r2Ptero)
+		{
+			desfase1 = 1.3f;
+			desfase2 = 1.3f;
+			rotPtero = 90.0f;
+			movPteroZ += 0.025;		
+			if (movPteroZ > 18)
+			{
+				r2Ptero = false;
+				r3Ptero = true;
+			}
+		}
+		if (r3Ptero)
+		{
+			desfase1 = 2.6f;
+			desfase2 = 0.0f;
+			rotPtero = 180.0f;
+			movPteroX += 0.025;
+			if (movPteroX > 0)
+			{
+				r3Ptero = false;
+				r4Ptero = true;
+			}
+		}
+		if (r4Ptero)
+		{
+			desfase1 = 1.3f;
+			desfase2 = -1.3f;
+			rotPtero = 270.0f;
+			movPteroZ -= 0.025;
+			if (movPteroZ < 0)
+			{
+				r4Ptero = false;
+				r5Ptero = true;
+			}
+		}
+		if (r5Ptero)
+		{
+			desfase1 = 0.0f;
+			desfase2 = 0.0f;
+			rotPtero = 0.0f;
+			movPteroX = -0.025f;
+			if (movPteroX < 0.0f)
+			{
+				r5Ptero = false;
+				r1Ptero = true;
+			}
+		}
+
+		if (aleteoArriba)
+		{	
+			rotAlasptero -= 0.35;
+			if (rotAlasptero < 0.0f)
+			{
+				aleteoAbajo = true;
+				aleteoArriba = false;
+			}
+		}
+
+		if (aleteoAbajo)
+		{
+			rotAlasptero += 0.35;
+			if (rotAlasptero > 45.0f)
+			{
+				aleteoArriba = true;
+				aleteoAbajo = false;
+			}
+		}
+
+	//Animacion Megalodon
+		if (r1Mega)
+		{
+			movMegaZ += 0.01;
+			if (movMegaZ > 16)
+			{
+				r1Mega = false;
+				r2Mega = true;
+			}
+		}
+		if (r2Mega)
+		{
+			rotMega = 135.0f;
+			movMegaX += 0.01;
+			movMegaZ -= 0.01;
+			if (movMegaX >17)
+			{
+				r2Mega = false;
+				r3Mega = true;
+			}
+		}
+		if (r3Mega)
+		{
+			rotMega = 0.0f;
+			movMegaZ += 0.01;
+			if (movMegaZ > 16)
+			{
+				r3Mega = false;
+				r4Mega = true;
+			}
+		}
+		if (r4Mega)
+		{
+			rotMega = -135.0f;
+			movMegaX -= 0.01;
+			movMegaZ -= 0.01;
+			if (movMegaX < 0)
+			{
+				r4Mega = false;
+				r5Mega = true;
+			}
+		}
+		if (r5Mega)
+		{
+			rotMega = 0;
+			movMegaZ -= 0.01;
+			if (movMegaZ < 0.0f)
+			{
+				r5Mega = false;
+				r1Mega = true;
+			}
+		}
+		if (aleteoIzq)
+		{
+			rotColaMega += 0.1;
+			if (rotColaMega > 20)
+			{
+				aleteoIzq = false;
+				aleteoDer = true;
+			}
+		}
+		if (aleteoDer)
+		{
+			rotColaMega -= 0.1;
+			if (rotColaMega < -20)
+			{
+				aleteoDer = false;
+				aleteoIzq = true;
+			}
+		}
+	}
+
 }

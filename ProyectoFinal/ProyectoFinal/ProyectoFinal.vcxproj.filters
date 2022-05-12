@@ -38,6 +38,12 @@
     <None Include="Shaders\lamp.vs">
       <Filter>Archivos de origen</Filter>
     </None>
+    <None Include="Shaders\anim3.frag">
+      <Filter>Archivos de origen</Filter>
+    </None>
+    <None Include="Shaders\anim3.vs">
+      <Filter>Archivos de origen</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="314221658_Reporte9_GPO12.cpp">
