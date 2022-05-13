@@ -420,6 +420,10 @@ int main()
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		vacas.Draw(lightingShader);
 
+		//Barosuarus
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		barosaurus.Draw(lightingShader);
+
 		//T-Rex
 		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		//glUniform1i(glGetUniformLocation(lightingShader.Program, "activaTrasparencia"), 0);
@@ -510,9 +514,7 @@ int main()
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		megalodonCuerpo.Draw(lightingShader);
 
-		//Barosuarus
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		barosaurus.Draw(lightingShader);
+		
 
 		//Pterodactylo
 		model = glm::mat4(1);
