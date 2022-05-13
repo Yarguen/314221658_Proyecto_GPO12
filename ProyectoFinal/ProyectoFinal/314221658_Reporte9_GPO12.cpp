@@ -72,6 +72,38 @@ float tiempo; //variable para animar el agua
 bool aleteoIzq = true;
 bool aleteoDer = false;
 
+//variables para la animacion del Trex
+float movRexX = 0.0f;
+float movRexZ = 0.0f;
+float rotCuerpoRex = 0.0f;
+float rotPiernaRex = 0.0f;
+float rotPataRex = 0.0f;
+float rotMandibulaRex = 0.0f;
+bool caminarRex = true;
+bool paso1Rex = true;
+bool paso2Rex = false;
+bool rugidoRex = false;
+bool inclinacionAbajoRex = true;
+bool inclinacionArribaRex = false;
+
+//variables para la aniacion del raptor
+float movRaptorX = 0.0f;
+float movRaptorZ = 0.0f;
+float rotCuerpoRaptor = 0.0f;
+float rotPiernaRaptor = 0.0f;
+float rotPataRaptor = 0.0f;
+float rotMandibulaRaptor = 0.0f;
+bool caminarRaptor = true;
+bool paso1Raptor = true;
+bool paso2Raptor = false;
+bool comerRaptor = false;
+bool inclinacionAbajoRaptor = true;
+bool inclinacionArribaRaptor = false;
+bool mordidaRaptor = false;
+bool mordidaArriba = true;
+bool mordidaAbajo = false;
+
+
 // Positions of the point lights
 glm::vec3 pointLightPositions[] = {
 	glm::vec3(0.0f,0.0f, 0.0f),
@@ -136,6 +168,8 @@ glm::vec3 Light4 = glm::vec3(0);
 
 glm::vec3 PteroPosIni = glm::vec3(75.0f,13.0f,-9.0f);
 glm::vec3 MegaPosIni = glm::vec3(-73.0f, 3.2f, -73.5f);
+glm::vec3 RexPosIni = glm::vec3(1.982f, 9.9f, -71.0f);
+glm::vec3 RaptorPosIni = glm::vec3(73.314f, 7.1f, -69.799f);
 
 // Deltatime
 GLfloat deltaTime = 0.0f;	// Time between current frame and last frame
@@ -192,27 +226,26 @@ int main()
 	Shader lampShader("Shaders/lamp.vs", "Shaders/lamp.frag");
 	Shader anim("Shaders/anim3.vs", "Shaders/anim3.frag");
 
+	//Modelos de ambiente
 	Model Piso((char*)"Models/Esfera/Piso.obj");
 	Model Lamparas((char*)"Models/Lampara/Lamparas.obj");
 	Model Tierra((char*)"Models/Esfera/tierra.obj");
-	//Model Bancas((char*)"Models/Bancas/Bancas.obj");
-	//Model Fuente((char*)"Models/Fuente/Fuente.obj");
-	//Model Esfera((char*)"Models/Esfera/Esfera.obj");
+	Model Bancas((char*)"Models/Bancas/Bancas.obj");
+	Model Fuente((char*)"Models/Fuente/Fuente.obj");
 	//Model rex((char*)"Models/Dinos/Trex.obj");
 	//Model pterodactylo((char*)"Models/Dinos/pterodactilo.obj");
-	//Model barosaurus((char*)"Models/Dinos/Barosaurus.obj");
-	//Model castillo((char*)"Models/Fachada/castillo.obj");
+	Model barosaurus((char*)"Models/Dinos/Barosaurus.obj");
+	Model castillo((char*)"Models/Fachada/castillo.obj");
 	//Model raptor((char*)"Models/Dinos/raptor.obj");
-	//Model celda((char*)"Models/Celda/celda.obj");
-	//Model pisocelda((char*)"Models/Celda/pisocelda.obj");
 	Model celdas((char*)"Models/Celda/setCeldas.obj");
+	Model vacas((char*)"Models/vaca/vacas.obj");
 	//Model megalodon((char*)"Models/Dinos/Megalodon.obj");
 	Model agua((char*)"Models/Sea/Sea.obj");
 	////Model jeep((char*)"Models/Jeep/Jeep2.obj");
-	//Model arboles((char*)"Models/Arbol/Arboles.obj");
-	//Model tiendas((char*)"Models/Tiendas/tiendas2.obj");
-	//Model tricoBotarga((char*)"Models/Dinos/tricoBotarga.obj");
-	//Model rexBotarga((char*)"Models/Dinos/rexBotarga.obj");
+	Model arboles((char*)"Models/Arbol/Arboles.obj");
+	Model tiendas((char*)"Models/Tiendas/tiendas2.obj");
+	Model tricoBotarga((char*)"Models/Dinos/tricoBotarga.obj");
+	Model rexBotarga((char*)"Models/Dinos/rexBotarga.obj");
 
 	//Modelos Perodactylo
 	Model pterodactylo_AlaIzq((char*)"Models/Dinos/Pterodactylo/pterodactylo_AlaIzq.obj");
@@ -223,7 +256,23 @@ int main()
 	Model megalodonCola((char*)"Models/Dinos/Megalodon/megalodonCola.obj");
 	Model megalodonCuerpo((char*)"Models/Dinos/Megalodon/megalodonCuerpo.obj");
 
-	// First, set the container's VAO (and VBO)
+	//Modelos T-rex
+	Model rexCuerpo((char*)"Models/Dinos/Trex/rexCuerpo.obj");
+	Model rexMandibula((char*)"Models/Dinos/Trex/rexMandibula.obj");
+	Model rexPiernaIzq((char*)"Models/Dinos/Trex/rexPiernaIzq.obj");
+	Model rexPiernaDer((char*)"Models/Dinos/Trex/rexPiernaDer.obj");
+	Model rexPataIzq((char*)"Models/Dinos/Trex/rexPataIzq.obj");
+	Model rexPataDer((char*)"Models/Dinos/Trex/rexPataDer.obj");
+
+	//ModelosRaptor
+	Model raptorCuerpo((char*)"Models/Dinos/Raptor/raptorCuerpo.obj");
+	Model raptorMandibula((char*)"Models/Dinos/Raptor/raptorMandibula.obj");
+	Model raptorPiernaIzq((char*)"Models/Dinos/Raptor/raptorPiernaIzq.obj");
+	Model raptorPiernaDer((char*)"Models/Dinos/Raptor/raptorPiernaDer.obj");
+	Model raptorPataIzq((char*)"Models/Dinos/Raptor/raptorPataIzq.obj");
+	Model raptorPataDer((char*)"Models/Dinos/Raptor/raptorPataDer.obj");
+
+	// First, set the container's VAO (and VBO)1
 	GLuint VBO, VAO;
 	glGenVertexArrays(1, &VAO);
 	glGenBuffers(1, &VBO);
@@ -331,8 +380,11 @@ int main()
 
 
 		glm::mat4 model(1);
-
-
+		glm::mat4 modeltemp1(1);
+		glm::mat4 modeltemp2(1);
+		glm::mat4 modeltemp3(1);
+		glm::mat4 modeltemp4(1);
+		glm::mat4 modeltemp5(1);
 
 		//Carga de modelo 
 		//Pisos,Fachada, Bancas y Fuente
@@ -343,37 +395,106 @@ int main()
 		model = glm::translate(model, glm::vec3(0.0f, 0.2f, 0.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		Tierra.Draw(lightingShader);
-		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		//Bancas.Draw(lightingShader);
-		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		//glUniform4f(glGetUniformLocation(lightingShader.Program, "colorAlpha"), 1.0f, 1.0f, 1.0f, 1.0f);
-		//Lamparas.Draw(lightingShader);
-		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		//Fuente.Draw(lightingShader);
-		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		//glUniform4f(glGetUniformLocation(lightingShader.Program, "colorAlpha"), 1.0f, 1.0f, 1.0f, 1.0f);
-		//castillo.Draw(lightingShader);
-		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		//arboles.Draw(lightingShader);
-		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		//tiendas.Draw(lightingShader);
-		///*glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		//jeep.Draw(lightingShader);*/
-		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		//rexBotarga.Draw(lightingShader);
-		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		//tricoBotarga.Draw(lightingShader);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		Bancas.Draw(lightingShader);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glUniform4f(glGetUniformLocation(lightingShader.Program, "colorAlpha"), 1.0f, 1.0f, 1.0f, 1.0f);
+		Lamparas.Draw(lightingShader);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		Fuente.Draw(lightingShader);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glUniform4f(glGetUniformLocation(lightingShader.Program, "colorAlpha"), 1.0f, 1.0f, 1.0f, 1.0f);
+		castillo.Draw(lightingShader);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		arboles.Draw(lightingShader);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		tiendas.Draw(lightingShader);
+		/*glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		jeep.Draw(lightingShader);*/
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		rexBotarga.Draw(lightingShader);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		tricoBotarga.Draw(lightingShader);
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		celdas.Draw(lightingShader);
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		vacas.Draw(lightingShader);
 
-		////T-Rex
+		//T-Rex
 		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		//glUniform1i(glGetUniformLocation(lightingShader.Program, "activaTrasparencia"), 0);
 		//rex.Draw(lightingShader);
+		model = glm::mat4(1);
+		model = glm::translate(model, RexPosIni + glm::vec3(movRexX,0.0f,movRexZ));
+		model = glm::rotate(model, glm::radians(rotCuerpoRex),glm::vec3(1.0f,0.0f,0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		rexCuerpo.Draw(lightingShader);
+		//Mandibula
+		model = glm::translate(model, glm::vec3(0.0f, 3.127f, 7.5f));
+		model = glm::rotate(model, glm::radians(rotMandibulaRex), glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		rexMandibula.Draw(lightingShader);
+		//PienaIzq
+		model = glm::mat4(1);
+		model = glm::translate(model, RexPosIni + glm::vec3(movRexX, 0.0f, movRexZ));
+		model = glm::rotate(model, glm::radians(rotPiernaRex), glm::vec3(1.0f, 0.0f, 0.0f));
+		modeltemp1= model = glm::translate(model, glm::vec3(1.909f, 0.978f, -0.755f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		rexPiernaIzq.Draw(lightingShader);
+		model = glm::translate(modeltemp1, glm::vec3(0.122f, -3.102f, 1.909f));
+		model = glm::rotate(model, glm::radians(rotPataRex), glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		rexPataIzq.Draw(lightingShader);
+		//Pierna derecha
+		model = glm::mat4(1);
+		model = glm::translate(model, RexPosIni + glm::vec3(movRexX, 0.0f, movRexZ));
+		model = glm::rotate(model, glm::radians(-rotPiernaRex), glm::vec3(1.0f, 0.0f, 0.0f));
+		modeltemp2 = model = glm::translate(model, glm::vec3(-1.837f, 0.613f, -0.763f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		rexPiernaDer.Draw(lightingShader);
+		model = glm::translate(modeltemp2, glm::vec3(-0.157f, -2.757f, 2.109f));
+		model = glm::rotate(model, glm::radians(-rotPataRex), glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		rexPataDer.Draw(lightingShader);
+
 		////Raptor
-		//
 		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		//raptor.Draw(lightingShader);
+		model = glm::mat4(1);
+		model = glm::translate(model, RaptorPosIni + glm::vec3(movRaptorX,0.0f,movRaptorZ));
+		model = glm::rotate(model, glm::radians(-45.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(rotCuerpoRaptor),glm::vec3(1.0f,0.0f,0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		raptorCuerpo.Draw(lightingShader);
+		//Mandibula
+		model = glm::translate(model, glm::vec3(0.0f, 0.646f, 3.873f));
+		model = glm::rotate(model, glm::radians(rotMandibulaRaptor), glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		raptorMandibula.Draw(lightingShader);
+		//PienaIzq
+		model = glm::mat4(1);
+		model = glm::translate(model, RaptorPosIni + glm::vec3(movRaptorX, 0.0f, movRaptorZ));
+		model = glm::rotate(model, glm::radians(-45.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(rotPiernaRaptor), glm::vec3(1.0f, 0.0f, 0.0f));
+		modeltemp3= model = glm::translate(model, glm::vec3(0.813f, -0.116f, -0.225f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		raptorPiernaIzq.Draw(lightingShader);
+		model = glm::translate(modeltemp3, glm::vec3(-0.077f, -1.348f, 0.208f));
+		model = glm::rotate(model, glm::radians(rotPataRaptor), glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		raptorPataIzq.Draw(lightingShader);
+		////Pierna derecha
+		model = glm::mat4(1);
+		model = glm::translate(model, RaptorPosIni + glm::vec3(movRaptorX, 0.0f, movRaptorZ));
+		model = glm::rotate(model, glm::radians(-45.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(-rotPiernaRaptor), glm::vec3(1.0f, 0.0f, 0.0f));
+		modeltemp4 = model = glm::translate(model, glm::vec3(-0.806f, -0.142f, -0.155f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		raptorPiernaDer.Draw(lightingShader);
+		model = glm::translate(modeltemp4, glm::vec3(-0.199f, -1.345f, 0.016f));
+		model = glm::rotate(model, glm::radians(-rotPataRaptor), glm::vec3(1.0f, 0.0f, 0.0f));
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		raptorPataDer.Draw(lightingShader);
 	
 		//Megalodon
 		model = glm::mat4(1);
@@ -389,12 +510,12 @@ int main()
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		megalodonCuerpo.Draw(lightingShader);
 
-		////Barosuarus
-		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		//barosaurus.Draw(lightingShader);
+		//Barosuarus
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		barosaurus.Draw(lightingShader);
 
 		//Pterodactylo
-		/*model = glm::mat4(1);
+		model = glm::mat4(1);
 		model = glm::translate(model,PteroPosIni+glm::vec3(movPteroX,0,movPteroZ));
 		model = glm::rotate(model, glm::radians(rotPtero), glm::vec3(0.0f, 1.0f, 0.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
@@ -412,7 +533,7 @@ int main()
 		model = glm::translate(model, glm::vec3(desfase2, 0.0f,desfase1));
 		model = glm::rotate(model, glm::radians(rotAlasptero), glm::vec3(1.0f, 0.0f, 0.0f));
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		pterodactylo_AlaIzq.Draw(lightingShader);*/
+		pterodactylo_AlaIzq.Draw(lightingShader);
 
 		anim.Use();
 		tiempo = glfwGetTime();
@@ -774,6 +895,148 @@ void animacion()
 				aleteoIzq = true;
 			}
 		}
+		
+		//Animacion Rex
+		if (caminarRex)
+		{	
+			movRexZ += 0.01;
+			if (movRexZ > 17.0f)
+			{
+				caminarRex = false;
+				rugidoRex = true;
+			}
+			if (paso1Rex)
+			{
+				rotPiernaRex -= 0.2f;
+				rotPataRex += 0.2f;
+				if (rotPiernaRex < -40.0f)
+				{
+					paso1Rex = false;
+					paso2Rex = true;
+				}
+			}
+			if (paso2Rex)
+			{
+				rotPiernaRex+= 0.2f;
+				rotPataRex -= 0.2f;
+				if (rotPiernaRex > 10.0f)
+				{
+					paso2Rex = false;
+					paso1Rex = true;
+				}
+			}
+		}
+		if (rugidoRex)
+		{
+			if (inclinacionAbajoRex)
+			{
+				rotMandibulaRex = 0.0f;
+				rotCuerpoRex += 0.05f;
+				rotPiernaRex = 0.0f;
+				rotPataRex =0.0f;
+				if (rotCuerpoRex > 35.0f)
+				{
+					inclinacionAbajoRex = false;
+					inclinacionArribaRex = true;
+				}
+			}
+			if (inclinacionArribaRex)
+			{
+
+				rotMandibulaRex = 30.0f;
+				rotCuerpoRex -= 0.05f;
+				rotPiernaRex = 0.0f;
+				rotPataRex = 0.0f;
+				if (rotCuerpoRex < -30.0f)
+				{
+					inclinacionArribaRex = false;
+					inclinacionAbajoRex = true;
+				}
+			}
+		}
+		//Animacion Raptor
+		if (caminarRaptor)
+		{
+			movRaptorX -= 0.05f;
+			movRaptorZ += 0.05f;
+			if (movRaptorX < -15.0f)
+			{
+				caminarRaptor = false;
+				comerRaptor = true;
+			}
+			if (paso1Raptor)
+			{
+				rotPiernaRaptor -= 0.5f;
+				rotPataRaptor += 0.5f;
+				if (rotPiernaRaptor < -40.0f)
+				{
+					paso1Raptor = false;
+					paso2Raptor = true;
+				}
+			}
+			if (paso2Raptor)
+			{
+				rotPiernaRaptor += 0.5f;
+				rotPataRaptor -= 0.5f;
+				if (rotPiernaRaptor > 20.0f)
+				{
+					paso2Raptor = false;
+					paso1Raptor = true;
+				}
+			}
+		}
+		if (comerRaptor)
+		{
+			if (inclinacionAbajoRaptor)
+			{
+				mordidaRaptor = false;
+				rotCuerpoRaptor += 0.1f;
+				rotPiernaRaptor = 0.0f;
+				rotPataRaptor = 0.0f;
+				if (rotCuerpoRaptor > 25.0f)
+				{
+					
+					inclinacionAbajoRaptor = false;
+					inclinacionArribaRaptor = true;
+				}
+			}
+			if (inclinacionArribaRaptor)
+			{
+				mordidaRaptor = true;
+				rotCuerpoRaptor -= 0.1f;
+				rotPiernaRaptor = 0.0f;
+				rotPataRaptor = 0.0f;
+				if (rotCuerpoRaptor < -30.0f)
+				{
+					inclinacionArribaRaptor = false;
+					inclinacionAbajoRaptor = true;
+				}
+			}
+			if (mordidaRaptor)
+			{
+				if (mordidaAbajo)
+				{
+					rotMandibulaRaptor += 0.5f;
+					if (rotMandibulaRaptor > 20.0f)
+					{
+						mordidaAbajo = false;
+						mordidaArriba = true;
+					}
+				}
+				if (mordidaArriba)
+				{
+					rotMandibulaRaptor -= 0.5f;
+					if (rotMandibulaRaptor < -20.0f)
+					{
+						mordidaAbajo = true;
+						mordidaArriba = false;
+					}
+				}
+			}
+
+		}
+		
+
 	}
 
 }
